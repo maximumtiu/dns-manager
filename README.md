@@ -1,24 +1,34 @@
-# README
+# dns-manager
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+`dns-manager` is a Rails 6.0 application allowing you to create DNS zones and records through the [NS1 API](https://ns1.com/).
 
-Things you may want to cover:
+## Requirements
 
-* Ruby version
+In order to get this project up and running, you'll need the following:
 
-* System dependencies
+* Ruby 2.5.x+
+* PostgreSQL
+  * (This app was created with 9.4 because that's evidently what I had on my personal computer.)
+* NS1 API credentials
 
-* Configuration
+Note: I deliberately skipped adding Webpacker/Javascript to this application (they come with Rails 6 by default) in order to reduce system requirements. This application is only meant to be an MVP of the DNS service, so a fully interactive UI isn't necessary at this phase of the project.
 
-* Database creation
+## Setup
 
-* Database initialization
+To get going, clone this repository, then run:
 
-* How to run the test suite
+```
+bin/setup
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+This will install the necessary dependencies and prepare your database.
 
-* Deployment instructions
+## Testing
 
-* ...
+To run the test suite, run:
+
+```
+bundle exec rake
+```
+
+This application uses RSpec for testing (this is the Ruby testing framework that I'm most familiar with).
