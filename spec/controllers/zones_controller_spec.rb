@@ -97,14 +97,14 @@ RSpec.describe ZonesController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        { zone: 'example.org' }
       }
 
       it "updates the requested zone" do
         zone = Zone.create! valid_attributes
         put :update, params: {id: zone.to_param, zone: new_attributes}, session: valid_session
         zone.reload
-        skip("Add assertions for updated state")
+        expect(zone.zone).to eq 'example.org'
       end
 
       it "redirects to the zone" do
