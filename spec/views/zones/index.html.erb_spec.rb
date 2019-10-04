@@ -17,6 +17,5 @@ RSpec.describe "zones/index", type: :view do
   it "renders a list of zones" do
     render
     assert_select "tr>td", :text => "Zone".to_s, :count => 2
-    assert_select "tr>td", :text => "MyText".to_s, :count => 2
   end
 end

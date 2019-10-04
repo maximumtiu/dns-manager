@@ -6,9 +6,15 @@
 </p>
 
 <p>
-  <strong>Dns servers:</strong>
-  <%= @zone.dns_servers %>
+  <strong>Configuration</strong>
+  <p>Update your domain's configuration with your domain provider to point at the following nameservers:</p>
+  <ul>
+    <% @zone.dns_servers.each do |server| %>
+      <li><%= server %></li>
+    <% end %>
+  </ul>
 </p>
 
 <%= link_to 'Edit', edit_zone_path(@zone) %> |
+<%= link_to 'Manage Records', edit_zone_path(@zone) %> |
 <%= link_to 'Back', zones_path %>

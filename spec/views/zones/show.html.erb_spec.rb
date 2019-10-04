@@ -4,7 +4,7 @@ RSpec.describe "zones/show", type: :view do
   before(:each) do
     @zone = assign(:zone, Zone.create!(
       :zone => "Zone",
-      :dns_servers => "MyText"
+      :dns_servers => ["MyText"]
     ))
   end
 
