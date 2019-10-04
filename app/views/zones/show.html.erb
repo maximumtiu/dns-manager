@@ -15,5 +15,24 @@
   </ul>
 </p>
 
+<% if @zone.records.blank? %>
+  You don't have any records for this Zone yet.
+  <br/>
+  <br/>
+<% else %>
+  <h3>Records</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Content</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <%= render 'records/index', zone: @zone %>
+  </table>
+<% end %>
+
 <%= link_to 'Destroy', @zone, method: :delete, data: { confirm: 'Are you sure?' } %> |
 <%= link_to 'Back', zones_path %>

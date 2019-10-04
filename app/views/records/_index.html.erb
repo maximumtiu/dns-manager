@@ -1,0 +1,9 @@
+<tbody>
+  <% zone.records.each do |record| %>
+    <tr>
+      <td><%= record.type_of %></td>
+      <td><%= record.rdata %></td>
+      <td><%= link_to 'Destroy', record, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</tbody>
