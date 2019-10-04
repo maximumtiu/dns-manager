@@ -1,9 +1,9 @@
 <p id="notice"><%= notice %></p>
 
-<p>
+<h2>
   <strong>Zone:</strong>
   <%= @zone.zone %>
-</p>
+</h2>
 
 <p>
   <strong>Configuration</strong>
@@ -15,7 +15,5 @@
   </ul>
 </p>
 
-<%= link_to 'Edit', edit_zone_path(@zone) %> |
-<%= link_to 'Manage Records', edit_zone_path(@zone) %> |
 <%= link_to 'Destroy', @zone, method: :delete, data: { confirm: 'Are you sure?' } %> |
 <%= link_to 'Back', zones_path %>
