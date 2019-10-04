@@ -5,6 +5,7 @@ module Ns1
       read('/zones')
     end
 
+    # GET /zones/:zone-name
     def self.show(zone_name)
       read("/zones/#{zone_name}")
     end
@@ -23,7 +24,7 @@ module Ns1
     end
 
     # DELETE /zones/:zone-name
-    def self.delete(zone_name)
+    def self.destroy(zone_name)
       delete("/zones/#{zone_name}")
     end
   end

@@ -17,4 +17,5 @@
 
 <%= link_to 'Edit', edit_zone_path(@zone) %> |
 <%= link_to 'Manage Records', edit_zone_path(@zone) %> |
+<%= link_to 'Destroy', @zone, method: :delete, data: { confirm: 'Are you sure?' } %> |
 <%= link_to 'Back', zones_path %>
