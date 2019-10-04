@@ -30,4 +30,11 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    errors:
+      models:
+        record:
+          attributes:
+            type_of:
+              inclusion: "must be one of A, AAAA, ALIAS, CNAME, NS, PTR, SPF, or TXT"
+              taken: "Record already exists for this Zone. Please choose another type."
