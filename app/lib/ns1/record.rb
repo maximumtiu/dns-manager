@@ -23,7 +23,7 @@ module Ns1
     end
 
     # DELETE /zones/:zone-name/:domain/:record-type
-    def self.delete(zone_name, domain, type)
+    def self.destroy(zone_name, domain, type)
       delete("/zones/#{zone_name}/#{domain}/#{type}")
     end
   end
