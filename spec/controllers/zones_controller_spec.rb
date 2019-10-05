@@ -135,60 +135,6 @@ RSpec.describe ZonesController, type: :controller do
     end
   end
 
-  describe "PUT #update" do
-    context 'when the NS1 request is successful' do
-      before do
-        allow(Ns1::Zone).to receive(:update)
-          .and_return(ns1_success)
-      end
-
-      context "with valid params" do
-        let(:new_attributes) {
-          { zone: 'example.org' }
-        }
-
-        it "updates the requested zone" do
-          zone = Zone.create! valid_attributes
-          put :update, params: {id: zone.to_param, zone: new_attributes}, session: valid_session
-          zone.reload
-          expect(zone.zone).to eq 'example.org'
-        end
-
-        it "redirects to the zone" do
-          zone = Zone.create! valid_attributes
-          put :update, params: {id: zone.to_param, zone: valid_attributes}, session: valid_session
-          expect(response).to redirect_to(zone)
-        end
-      end
-
-      context "with invalid params" do
-        it "returns a success response (i.e. to display the 'edit' template)" do
-          zone = Zone.create! valid_attributes
-          put :update, params: {id: zone.to_param, zone: invalid_attributes}, session: valid_session
-          expect(response).to be_successful
-        end
-      end
-    end
-
-    context 'when NS1 returns an error' do
-      let(:zone) { Zone.create! valid_attributes }
-      before do
-        allow(Ns1::Zone).to receive(:update)
-          .and_return(ns1_failure)
-      end
-
-      it 'redirects to the form' do
-        put :update, params: {id: zone.to_param, zone: invalid_attributes}, session: valid_session
-        expect(response).to redirect_to(new_zone_path)
-      end
-
-      it 'displays an error message to the user' do
-        put :update, params: {id: zone.to_param, zone: invalid_attributes}, session: valid_session
-        expect(flash[:notice]).to match(/try again/)
-      end
-    end
-  end
-
   describe "DELETE #destroy" do
     let!(:zone) { Zone.create! valid_attributes }
     let(:ns1_success) do

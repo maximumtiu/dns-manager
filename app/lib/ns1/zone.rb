@@ -17,12 +17,6 @@ module Ns1
       write("/zones/#{zone_name}", :put, body)
     end
 
-    # POST /zones/:zone-name
-    def self.update(zone_name)
-      body = { "zone" => "#{zone_name}" }
-      write("/zones/#{zone_name}", :post, body)
-    end
-
     # DELETE /zones/:zone-name
     def self.destroy(zone_name)
       delete("/zones/#{zone_name}")
