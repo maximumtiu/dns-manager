@@ -66,7 +66,8 @@ This application uses RSpec for testing (this is the Ruby testing framework that
     * This isn't how I like to work in production (I prefer separate clients/servers), but I chose this direction for ease of creating the interface and reducing the upfront effort and complexity for an MVP.
     * If this were to become a bigger project and progress past the MVP stage, we could always extract a proper UI into a separate application, making this Rails app API-only. That approach would also allow it to be easy to expose the API for other direct consumers.
 * Organizing API requests
-    * I used the Typhoeus gem because it provides easy stubbing for testing. It's also very performant, and can be adapted in the future to have parallel requests if this project were to scale
+    * I used the Typhoeus gem because it provides easy stubbing for testing. It's also very performant, and can be adapted in the future to have parallel requests if this project were to scale.
+    * I created a [base API class](https://github.com/megantiu/dns-manager/blob/master/app/lib/ns1.rb) to deal with the common knitty-gritty aspects of making API requests. Then, each object (Zone/Record) has [its own API client](https://github.com/megantiu/dns-manager/tree/master/app/lib/ns1). This pattern was influenced by the fact that I like to make API interfaces that are as easy to use and as clean as possible.
 * Using the storage layer
     * I'm using a PostgreSQL database, which will store the necessary info from NS1 so we don't always have to rely on external web requests to fetch our data.
 * NS1's impact on web requests
