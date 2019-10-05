@@ -31,11 +31,11 @@ RSpec.describe RecordsController, type: :controller do
   # Record. As you add validations to Record, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    { type_of: 'TXT', rdata: 'test', zone_id: zone.id }
+    { type_of: 'TXT', rdata: 'test', ttl: 3600, zone_id: zone.id }
   }
 
   let(:invalid_attributes) {
-    { type_of: 'CERT', rdata: 'test' }
+    { type_of: 'CERT', rdata: 'test', ttl: -1 }
   }
 
   let(:valid_params) {
