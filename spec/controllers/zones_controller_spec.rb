@@ -171,18 +171,19 @@ RSpec.describe ZonesController, type: :controller do
     end
 
     context 'when NS1 returns an error' do
+      let(:zone) { Zone.create! valid_attributes }
       before do
         allow(Ns1::Zone).to receive(:update)
           .and_return(ns1_failure)
       end
 
       it 'redirects to the form' do
-        post :create, params: {zone: invalid_attributes}, session: valid_session
+        put :update, params: {id: zone.to_param, zone: invalid_attributes}, session: valid_session
         expect(response).to redirect_to(new_zone_path)
       end
 
       it 'displays an error message to the user' do
-        post :create, params: {zone: invalid_attributes}, session: valid_session
+        put :update, params: {id: zone.to_param, zone: invalid_attributes}, session: valid_session
         expect(flash[:notice]).to match(/try again/)
       end
     end
