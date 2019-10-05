@@ -81,14 +81,6 @@ RSpec.describe ZonesController, type: :controller do
     end
   end
 
-  describe "GET #edit" do
-    it "returns a success response" do
-      zone = Zone.create! valid_attributes
-      get :edit, params: {id: zone.to_param}, session: valid_session
-      expect(response).to be_successful
-    end
-  end
-
   describe "POST #create" do
     context 'when the NS1 request is successful' do
       before do
