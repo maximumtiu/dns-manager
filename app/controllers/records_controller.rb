@@ -13,6 +13,7 @@ class RecordsController < ApplicationController
 
   # GET /records/1/edit
   def edit
+    @zone = @record.zone
   end
 
   # POST /records
@@ -23,7 +24,7 @@ class RecordsController < ApplicationController
     response = Ns1::Record.create(
       @zone.zone,
       @zone.zone,
-      record_params[:type_of],
+      record_params[:type_of].upcase,
       [{ answer: [record_params[:rdata]] }]
     )
     if response.success?
@@ -41,39 +42,38 @@ class RecordsController < ApplicationController
   end
 
   # PATCH/PUT /records/1
-  # PATCH/PUT /records/1.json
   def update
-    response = Ns1::Record.update(record_params[:record])
+    @zone = @record.zone
+    response = Ns1::Record.update(
+      @zone.zone,
+      @zone.zone,
+      record_params[:type_of].upcase,
+      [{ answer: [record_params[:rdata]] }]
+    )
     if response.success?
       json = JSON.parse(response.body)
-      @record.dns_servers = json['dns_servers']
-
+      ttl = json['ttl']
       if @record.update(record_params)
-        redirect_to @record, notice: 'Record was successfully updated.'
+        redirect_to @zone, notice: 'Record was successfully updated.'
       else
         render :edit
       end
     else
       message = 'Something went wrong updating your Record. Please try again shortly.'
-      redirect_to new_record_path, notice: message
+      redirect_to edit_record_path(@record), notice: message
     end
   end
 
   # DELETE /records/1
-  # DELETE /records/1.json
   def destroy
     @zone = @record.zone
-    response = Ns1::Record.destroy(
-      @zone.zone,
-      @zone.zone,
-      @record.type_of
-    )
+    response = Ns1::Record.destroy(@zone.zone, @zone.zone, @record.type_of)
     if response.success?
       @record.destroy
       redirect_to @zone, notice: 'Record was successfully destroyed.'
     else
       message = 'Something went wrong destroying your Record. Please try again shortly.'
-      redirect_back fallback_location: records_path, notice: message
+      redirect_back fallback_location: zones_path, notice: message
     end
   end
 
