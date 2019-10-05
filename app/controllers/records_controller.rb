@@ -1,5 +1,5 @@
 class RecordsController < ApplicationController
-  before_action :set_record, only: [:show, :edit, :update, :destroy]
+  before_action :set_record, only: [:edit, :update, :destroy]
 
   # GET /records/new
   def new
@@ -16,7 +16,6 @@ class RecordsController < ApplicationController
   end
 
   # POST /records
-  # POST /records.json
   def create
     @record = Record.new(record_params)
     @zone = Zone.find(params['zone_id'])
