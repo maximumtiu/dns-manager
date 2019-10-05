@@ -1,7 +1,7 @@
 module Ns1
   class Record < Base
     # PUT /zones/:zone-name/:domain/:record-type
-    def self.create(zone_name, domain, type, answers = [])
+    def self.create(zone_name, domain, type, ttl, answers = [])
       body = {
         'zone' => zone_name,
         'domain' => domain,
@@ -12,7 +12,7 @@ module Ns1
     end
 
     # POST /zones/:zone-name/:domain/:record-type
-    def self.update(zone_name, domain, type, answers = [])
+    def self.update(zone_name, domain, type, ttl, answers = [])
       body = {
         'zone' => zone_name,
         'domain' => domain,

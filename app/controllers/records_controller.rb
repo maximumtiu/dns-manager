@@ -25,6 +25,7 @@ class RecordsController < ApplicationController
       @zone.zone,
       @zone.zone,
       record_params[:type_of].upcase,
+      record_params[:ttl],
       [{ answer: [record_params[:rdata]] }]
     )
     if response.success?
@@ -48,6 +49,7 @@ class RecordsController < ApplicationController
       @zone.zone,
       @zone.zone,
       record_params[:type_of].upcase,
+      record_params[:ttl],
       [{ answer: [record_params[:rdata]] }]
     )
     if response.success?
@@ -85,6 +87,6 @@ class RecordsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def record_params
-      params.require(:record).permit(:type_of, :rdata, :zone_id)
+      params.require(:record).permit(:type_of, :rdata, :zone_id, :ttl)
     end
 end
