@@ -2,7 +2,13 @@
 
 `dns-manager` is a Rails 5.2 application allowing you to create DNS zones and records via the [NS1 API](https://ns1.com/).
 
-## Requirements
+## Background
+
+This application was created in a few hours as a challenge for a previous company. I am choosing to use this app as a code sample because it's a representative selection of my work under a short time frame, as well as for the way I prefer to communicate about the software I make and the choices I make along the way. Additionally, this exercise covers working with third-party APIs, code organization, testing, error handling, RESTful operations, and more.
+
+The original prompt was to create a minimum viable web application that provides a simple user interface for managing DNS records using the NS1 API. It directly correlates with the [NS1 domain concepts](https://ns1.com/api) of the Zone (like a domain, e.g. `megantiu.com`) and Records (individual DNS records, like a TXT or A record).
+
+## System Requirements
 
 In order to get this project up and running, you'll need the following:
 
@@ -39,7 +45,7 @@ To run the test suite, run:
 bundle exec rake
 ```
 
-This application uses RSpec for testing (this is the Ruby testing framework that I'm most familiar with).
+This application uses RSpec for testing (this is my Ruby testing framework of choice).
 
 ## What's in here?
 
@@ -63,8 +69,9 @@ This application uses RSpec for testing (this is the Ruby testing framework that
 ### Decisions
 * Monolithic Rails app
     * The front-end and back-end are within the same Rails application.
-    * This isn't how I like to work in production (I prefer separate clients/servers), but I chose this direction for ease of creating the interface and reducing the upfront effort and complexity for an MVP.
+    * I chose this direction for ease of creating the interface and reducing the upfront effort and complexity for an MVP.
     * If this were to become a bigger project and progress past the MVP stage, we could always extract a proper UI into a separate application, making this Rails app API-only. That approach would also allow it to be easy to expose the API for other direct consumers.
+    * This is a decision, however, when making in a production codebase, I would take other people-focused factors into account, like preferences of the team, what the long-term vision of this part of the product/infrastructure is, skills/background of the team, etc.
 * Organizing API requests
     * I used the Typhoeus gem because it provides easy stubbing for testing. It's also very performant, and can be adapted in the future to have parallel requests if this project were to scale.
     * I created a [base API class](https://github.com/megantiu/dns-manager/blob/master/app/lib/ns1.rb) to deal with the common knitty-gritty aspects of making API requests. Then, each object (Zone/Record) has [its own API client](https://github.com/megantiu/dns-manager/tree/master/app/lib/ns1). This pattern was influenced by the fact that I like to make API interfaces that are as easy to use and as clean as possible.
@@ -81,7 +88,7 @@ This application uses RSpec for testing (this is the Ruby testing framework that
     * I am limiting the amount of fields that a user can edit on a Zone and on a Record. This is partially due to simplicity so that there is less to account for during this MVP phase, but also partially because I do have a lack of familiarity with DNS conventions. Typically, I'd ask more questions to gather exactly what we as a business want the user to be able to do, but in this case, it seemed like it was up to me.
 
 ### Limitations/Opportunities
-This includes all the things I would do different if I were to have more time!
+This includes all the things I would do different if I were to spend more time on this application!
 
 * No editing Zones
     * Because I kept the Zone fields as simple as possible (and only stored the zone name), I didn't have anything else to edit on the Zone object. With more time, I would've added more fields for customization.
@@ -102,4 +109,4 @@ This includes all the things I would do different if I were to have more time!
 
 ## Thank you!
 
-Thanks for reading! I had a lot of fun with this exercise.
+Thanks for reading! I hope you have a great day.
